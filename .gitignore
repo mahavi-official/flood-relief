@@ -1,0 +1,8 @@
+# Local environment
+.env
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
