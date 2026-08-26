@@ -1,0 +1,6 @@
+Timestamp,Type of need,Contact number,District,Location description,Latitude,Longitude,Accuracy (m),Number of people,Additional details,Status
+2026-08-26 10:41:02,"Rescue, Drinking water",9700000020,Saptari,"Rajbiraj-6, family of five on the roof of a two-storey house",26.542100,86.748900,18,5,"Water is still rising. Two small children and one elderly woman. SAMPLE DATA ONLY.",
+2026-08-26 10:12:47,"Food, Drinking water",9700000021,Bardiya,"Rajapur ward 4 community building, about 40 people sheltering",28.427900,81.089300,25,40,"No cooked food since yesterday morning.",
+2026-08-26 09:50:15,Medicine,9700000022,Sunsari,"Inaruwa bus park shelter",26.605400,87.150200,32,3,"Insulin and blood pressure medicine needed.",
+2026-08-26 09:05:33,Shelter,9700000023,Rautahat,"Gaur ward 9, house collapsed",26.766800,85.276400,40,7,"Two families with no dry place to sleep tonight.",
+2026-08-26 08:22:10,"Rescue",9700000024,Morang,"Biratnagar-12, near Keshaliya khola",26.452500,87.271800,15,2,"Elderly couple stranded, road is under water.",

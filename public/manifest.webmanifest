@@ -1,0 +1,14 @@
+{
+  "name": "बाढी उद्धार नेपाल · Nepal Flood Relief",
+  "short_name": "बाढी उद्धार",
+  "description": "हराएका र भेटिएका व्यक्तिको जानकारी दिनुहोस्, र आपत्कालीन सहयोग माग्नुहोस्।",
+  "lang": "ne",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f5f2",
+  "theme_color": "#c62828",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
