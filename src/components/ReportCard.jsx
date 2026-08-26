@@ -13,6 +13,20 @@ function timeAgo(iso, lang) {
   })
 }
 
+function photoSrc(photo) {
+  const value = String(photo || '').trim()
+  try {
+    const url = new URL(value)
+    if (url.hostname === 'drive.google.com') {
+      const fileId = url.searchParams.get('id') || url.pathname.match(/\/d\/([^/]+)/)?.[1]
+      if (fileId) return `https://lh3.googleusercontent.com/d/${encodeURIComponent(fileId)}`
+    }
+  } catch {
+    // Keep non-URL photo values unchanged so the card can still fail normally.
+  }
+  return value
+}
+
 export default function ReportCard({ kind, row }) {
   const { t, lang } = useLang()
   const conditionTag =
@@ -45,8 +59,15 @@ export default function ReportCard({ kind, row }) {
       )}
       {row.notes && <p className="report-desc">{row.notes}</p>}
 
-      {row.photo && <img className="report-photo" src={row.photo} alt={row.name || 'report photo'} loading="lazy" />}
-
+      {row.photo && (
+        <img
+          className="report-photo"
+          src={photoSrc(row.photo)}
+          alt={row.name || 'report photo'}
+          loading="lazy"
+          referrerPolicy="no-referrer"
+        />
+      )}
       <div className="report-card-actions">
         {row.reporterPhone && (
           <a className="btn btn-outline" style={{ padding: '7px 14px', fontSize: 13 }} href={`tel:${row.reporterPhone}`}>
