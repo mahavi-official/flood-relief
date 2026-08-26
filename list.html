@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Missing List — Flood Help Nepal</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1 id="site-title"><a id="site-title-link" href="index.html">Flood Help Nepal</a></h1>
+    <div class="header-right">
+      <div class="lang-toggle">
+        <button id="lang-en">EN</button>
+        <button id="lang-np" class="active">ने</button>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="report.html">Report</a>
+        <a href="update.html">Update Status</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="section-list">
+      <h2>Missing Persons</h2>
+      <div id="list-container" class="cards"></div>
+      <p id="list-note" class="note">List loads from your published Google Sheet.</p>
+    </section>
+
+    <section id="section-found">
+      <h2 id="found-title">Found / Resolved</h2>
+      <div id="found-container" class="cards"></div>
+      <p class="note" id="found-note">People marked as found or deceased will appear here.</p>
+    </section>
+  </main>
+
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none"></iframe>
+  <script src="js/app.js"></script>
+</body>
+</html>
