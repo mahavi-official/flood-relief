@@ -95,7 +95,6 @@ export function PhotoField({ label, hint, onFile, fileName }) {
       <input
         type="file"
         accept="image/*"
-        capture="environment"
         onChange={(e) => onFile(e.target.files?.[0] || null)}
       />
       {fileName && <div className="field-hint">{fileName}</div>}
