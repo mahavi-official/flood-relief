@@ -23,12 +23,13 @@ export function IconSOS(props) {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" {...props}>
       <path
-        d="M12 3l1.9 4.4L18.6 8l-3.6 3 1.1 4.7L12 13.6 7.9 15.7 9 11 5.4 8l4.7-.6L12 3z"
+        d="M12 3.6l9 15.6H3l9-15.6z"
         stroke="currentColor"
-        strokeWidth="1.7"
+        strokeWidth="1.8"
         strokeLinejoin="round"
       />
-      <path d="M12 3v18" stroke="currentColor" strokeWidth="0" />
+      <path d="M12 9.4v4.2" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+      <circle cx="12" cy="16.4" r="1" fill="currentColor" />
     </svg>
   )
 }
@@ -64,6 +65,36 @@ export function IconPin(props) {
         strokeLinejoin="round"
       />
       <circle cx="12" cy="9.5" r="2.3" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  )
+}
+
+export function IconVolunteer(props) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" {...props}>
+      <path
+        d="M12 20.3s-6.6-4-6.6-8.6a3.5 3.5 0 016.6-1.6 3.5 3.5 0 016.6 1.6c0 4.6-6.6 8.6-6.6 8.6z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+export function IconHome(props) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" {...props}>
+      <path d="M4 10.5L12 4l8 6.5V20a1 1 0 01-1 1h-4v-6H9v6H5a1 1 0 01-1-1v-9.5z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+export function IconSearch(props) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" {...props}>
+      <circle cx="11" cy="11" r="6.2" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M15.6 15.6L20 20" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
   )
 }

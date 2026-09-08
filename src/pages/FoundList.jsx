@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useLang } from '../lib/i18n'
 import { useReports } from '../lib/useReports'
 import ReportCard from '../components/ReportCard'
+import { IconSearch } from '../components/Icons'
 
 export default function FoundList() {
   const { t } = useLang()
@@ -11,7 +13,7 @@ export default function FoundList() {
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
     return rows
-      .filter((r) => (q ? `${r.name} ${r.location}`.toLowerCase().includes(q) : true))
+      .filter((r) => (q ? `${r.name} ${r.location} ${r.shelter || ''}`.toLowerCase().includes(q) : true))
       .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
   }, [rows, query])
 
@@ -21,14 +23,21 @@ export default function FoundList() {
 
       {state === 'not-configured' && <div className="config-warning">{t('notConfigured')}</div>}
 
-      <div className="list-toolbar">
-        <input type="text" placeholder={t('searchPlaceholder')} value={query} onChange={(e) => setQuery(e.target.value)} />
+      <div className="search-box">
+        <IconSearch aria-hidden="true" />
+        <input
+          type="search"
+          placeholder={t('searchPlaceholder')}
+          aria-label={t('searchPlaceholder')}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
       </div>
 
       {state === 'loading' && <div className="state-panel">{t('loading')}</div>}
       {state === 'error' && (
         <div className="state-panel">
-          {t('loadError')}{' '}
+          <p>{t('loadError')}</p>
           <button className="btn btn-outline" onClick={reload}>
             {t('fldLocationRetry')}
           </button>
@@ -43,6 +52,10 @@ export default function FoundList() {
           <ReportCard key={row.id} kind="found" row={row} />
         ))}
       </div>
+
+      <Link to="/found" className="page-back">
+        {t('reportBtn')}
+      </Link>
     </div>
   )
 }

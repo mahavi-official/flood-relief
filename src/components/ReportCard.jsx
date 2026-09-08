@@ -1,7 +1,7 @@
 import { useLang } from '../lib/i18n'
 import { IconPhone, IconPin } from './Icons'
 
-function timeAgo(iso, lang) {
+function formatTime(iso, lang) {
   if (!iso) return ''
   const d = new Date(iso)
   if (Number.isNaN(d.getTime())) return ''
@@ -27,34 +27,37 @@ function photoSrc(photo) {
   return value
 }
 
+const conditionKey = {
+  safe: 'fldConditionSafe',
+  injured: 'fldConditionInjured',
+  medical: 'fldConditionMedical'
+}
+
 export default function ReportCard({ kind, row }) {
   const { t, lang } = useLang()
-  const conditionTag =
-    kind === 'found' && row.condition && row.condition !== 'safe' ? (
-      <span className={`report-tag tag-${row.condition}`}>{t(row.condition === 'injured' ? 'fldConditionInjured' : 'fldConditionMedical')}</span>
-    ) : kind === 'found' && row.condition === 'safe' ? (
-      <span className="report-tag tag-safe">{t('fldConditionSafe')}</span>
-    ) : null
-
   const locationLine = kind === 'missing' ? [row.district, row.location].filter(Boolean).join(' · ') : row.location
 
   return (
-    <article className="report-card">
+    <article className={`report-card kind-${kind}`}>
       <div className="report-card-top">
         <div>
+          <span className={`report-tag tag-${kind}`}>{t(kind === 'missing' ? 'badgeMissing' : 'badgeFound')}</span>
           <p className="report-name">{row.name || '—'}</p>
-          <div className="report-meta">
-            <IconPin style={{ verticalAlign: '-2px', marginRight: 4 }} />
-            {locationLine}
-          </div>
+          {locationLine && (
+            <p className="report-meta">
+              <IconPin aria-hidden="true" /> {locationLine}
+            </p>
+          )}
         </div>
-        {conditionTag}
+        {kind === 'found' && row.condition && conditionKey[row.condition] && (
+          <span className={`report-tag tag-${row.condition}`}>{t(conditionKey[row.condition])}</span>
+        )}
       </div>
 
       {row.description && <p className="report-desc">{row.description}</p>}
       {row.shelter && (
         <p className="report-desc">
-          {t('fldShelterLocation')}: {row.shelter}
+          {t('shelterAt')} {row.shelter}
         </p>
       )}
       {row.notes && <p className="report-desc">{row.notes}</p>}
@@ -68,16 +71,18 @@ export default function ReportCard({ kind, row }) {
           referrerPolicy="no-referrer"
         />
       )}
-      <div className="report-card-actions">
-        {row.reporterPhone && (
-          <a className="btn btn-outline" style={{ padding: '7px 14px', fontSize: 13 }} href={`tel:${row.reporterPhone}`}>
-            <IconPhone /> {t('callBtn')}
+
+      {row.reporterPhone && (
+        <div className="report-card-actions">
+          <a className="btn btn-primary tone-river btn-small" href={`tel:${row.reporterPhone}`}>
+            <IconPhone /> {t('callBtn')} {row.reporterPhone}
           </a>
-        )}
-      </div>
-      <div className="report-meta" style={{ marginTop: 8 }}>
-        {t('reportedAt')}: {timeAgo(row.timestamp, lang)}
-      </div>
+        </div>
+      )}
+
+      <p className="report-meta report-time">
+        {t('reportedAt')}: {formatTime(row.timestamp, lang)}
+      </p>
     </article>
   )
 }

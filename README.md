@@ -13,18 +13,26 @@ Apps Script Web App in between. No servers to host or pay for.
 ## 1. Site structure
 
 ```
-/                 Home — three big actions: Help Me / Missing / Found
-/missing          Report a missing person (form)
+/                 Home — four big actions: Urgent Help / Missing / Found / Volunteer
+/missing          "I am looking for someone I lost" (form)
 /missing/list     Browse missing-person reports (search + district filter)
-/found            Report a found person (form)
+/found            "I found someone" (form)
 /found/list       Browse found-person reports (search)
-/help             "Help Me" SOS form (auto-captures GPS)
-/help/list        Browse help requests — map view (default) or list view
+/help             "I need urgent help" form (auto-captures GPS)
+/help/list        Browse help requests — list view, with an optional map
+/volunteers       Volunteer search — every help request, missing and found
+                  report in one searchable list
 ```
 
-Language toggle (English ⇄ Nepali) lives in the header on every page.
-Nepali is the default for first-time visitors; the choice is remembered
-locally after that.
+The language switch (English / नेपाली, both always visible) sits in the
+header on every page. **English is the default** for first-time visitors;
+the choice is remembered locally after that.
+
+Wording across the site is deliberately plain and first-person ("I need
+urgent help", "I found someone"), form labels say "must fill" / "can skip"
+instead of using an asterisk, and every tap target is at least ~50px tall —
+the site is written for people who may be using a website for the first
+time, in a hurry, on a small phone.
 
 ---
 

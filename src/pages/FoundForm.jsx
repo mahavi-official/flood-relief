@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useLang } from '../lib/i18n'
 import { TextField, TelField, NumberField, TextAreaField, ChipField, PhotoField } from '../components/Field'
 import SuccessPanel from '../components/SuccessPanel'
@@ -86,7 +87,13 @@ export default function FoundForm() {
         <TextField label={t('fldFoundName')} required value={form.name} onChange={set('name')} />
         <TextAreaField label={t('fldCurrentLocation')} required value={form.location} onChange={set('location')} />
         <TextField label={t('fldReporterName')} required value={form.reporterName} onChange={set('reporterName')} />
-        <TelField label={t('fldReporterPhone')} required value={form.reporterPhone} onChange={set('reporterPhone')} />
+        <TelField
+          label={t('fldReporterPhone')}
+          hint={t('fldReporterPhoneHint')}
+          required
+          value={form.reporterPhone}
+          onChange={set('reporterPhone')}
+        />
 
         <NumberField label={t('fldAge')} value={form.age} onChange={set('age')} min="0" max="120" />
         <ChipField
@@ -134,6 +141,10 @@ export default function FoundForm() {
           </button>
         </div>
       </form>
+
+      <Link to="/" className="page-back">
+        {t('backHome')}
+      </Link>
     </div>
   )
 }
