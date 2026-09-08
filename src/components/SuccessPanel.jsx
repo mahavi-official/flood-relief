@@ -9,17 +9,17 @@ export default function SuccessPanel({ descriptionKey, listPath, onReset }) {
       <div className="success-check">
         <IconCheck />
       </div>
-      <h2 className="success-title">{t('successTitle')}</h2>
+      <h1 className="success-title">{t('successTitle')}</h1>
       <p className="success-desc">{t(descriptionKey)}</p>
       <div className="success-actions">
-        <button className="btn btn-outline" onClick={onReset}>
-          {t('viewAnother')}
-        </button>
         {listPath && (
           <Link className="btn btn-primary tone-river" to={listPath}>
             {t('browseBtn')}
           </Link>
         )}
+        <button className="btn btn-outline" onClick={onReset}>
+          {t('viewAnother')}
+        </button>
         <Link className="btn btn-outline" to="/">
           {t('backHome')}
         </Link>

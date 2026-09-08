@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useLang } from '../lib/i18n'
 import { TextField, TelField, NumberField, TextAreaField, DateTimeField, ChipField, PhotoField } from '../components/Field'
 import SuccessPanel from '../components/SuccessPanel'
@@ -90,7 +91,13 @@ export default function MissingForm() {
         <TextField label={t('fldLastSeenDistrict')} required value={form.district} onChange={set('district')} />
         <TextAreaField label={t('fldLastSeenLocation')} required value={form.location} onChange={set('location')} />
         <TextField label={t('fldReporterName')} required value={form.reporterName} onChange={set('reporterName')} />
-        <TelField label={t('fldReporterPhone')} required value={form.reporterPhone} onChange={set('reporterPhone')} />
+        <TelField
+          label={t('fldReporterPhone')}
+          hint={t('fldReporterPhoneHint')}
+          required
+          value={form.reporterPhone}
+          onChange={set('reporterPhone')}
+        />
 
         <NumberField label={t('fldAge')} value={form.age} onChange={set('age')} min="0" max="120" />
         <ChipField
@@ -129,6 +136,10 @@ export default function MissingForm() {
           </button>
         </div>
       </form>
+
+      <Link to="/" className="page-back">
+        {t('backHome')}
+      </Link>
     </div>
   )
 }

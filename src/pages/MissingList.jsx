@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useLang } from '../lib/i18n'
 import { useReports } from '../lib/useReports'
 import ReportCard from '../components/ReportCard'
+import { IconSearch } from '../components/Icons'
 
 export default function MissingList() {
   const { t } = useLang()
@@ -18,7 +20,7 @@ export default function MissingList() {
     const q = query.trim().toLowerCase()
     return rows
       .filter((r) => (district ? r.district === district : true))
-      .filter((r) => (q ? `${r.name} ${r.district}`.toLowerCase().includes(q) : true))
+      .filter((r) => (q ? `${r.name} ${r.district} ${r.location}`.toLowerCase().includes(q) : true))
       .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
   }, [rows, query, district])
 
@@ -28,10 +30,20 @@ export default function MissingList() {
 
       {state === 'not-configured' && <div className="config-warning">{t('notConfigured')}</div>}
 
-      <div className="list-toolbar">
-        <input type="text" placeholder={t('searchPlaceholder')} value={query} onChange={(e) => setQuery(e.target.value)} />
-        {districts.length > 0 && (
-          <select value={district} onChange={(e) => setDistrict(e.target.value)}>
+      <div className="search-box">
+        <IconSearch aria-hidden="true" />
+        <input
+          type="search"
+          placeholder={t('searchPlaceholder')}
+          aria-label={t('searchPlaceholder')}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+      </div>
+
+      {districts.length > 0 && (
+        <div className="list-toolbar">
+          <select value={district} onChange={(e) => setDistrict(e.target.value)} aria-label={t('filterAllDistricts')}>
             <option value="">{t('filterAllDistricts')}</option>
             {districts.map((d) => (
               <option key={d} value={d}>
@@ -39,13 +51,13 @@ export default function MissingList() {
               </option>
             ))}
           </select>
-        )}
-      </div>
+        </div>
+      )}
 
-      {(state === 'loading') && <div className="state-panel">{t('loading')}</div>}
+      {state === 'loading' && <div className="state-panel">{t('loading')}</div>}
       {state === 'error' && (
         <div className="state-panel">
-          {t('loadError')}{' '}
+          <p>{t('loadError')}</p>
           <button className="btn btn-outline" onClick={reload}>
             {t('fldLocationRetry')}
           </button>
@@ -60,6 +72,10 @@ export default function MissingList() {
           <ReportCard key={row.id} kind="missing" row={row} />
         ))}
       </div>
+
+      <Link to="/missing" className="page-back">
+        {t('reportBtn')}
+      </Link>
     </div>
   )
 }
